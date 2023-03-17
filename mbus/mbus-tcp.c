@@ -28,8 +28,8 @@
 
 #define PACKET_BUFF_SIZE 2048
 
-static int tcp_timeout_sec = 4;
-static int tcp_timeout_usec = 0;
+static int tcp_timeout_sec = 1;
+static int tcp_timeout_usec = 500000;
 
 //------------------------------------------------------------------------------
 /// Setup a TCP/IP handle.
