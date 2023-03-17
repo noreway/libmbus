@@ -1074,7 +1074,9 @@ mbus_data_product_name(mbus_data_variable_header *header)
                     case 0x10:
                         strcpy(buff,"EMU Professional 3/75 M-Bus");
                         break;
-                }
+                    case 0x19:
+                        strcpy(buff,"EMU Professional Gen2 3/100 M-Bus");
+                        break;                }
             }
         }
         else if (manufacturer == mbus_manufacturer_id("GAV"))
