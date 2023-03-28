@@ -28,25 +28,40 @@ main(int argc, char **argv)
 
     memset((void *)&reply, 0, sizeof(mbus_frame));
 
-    if (argc != 4 && argc != 3)
+    if (argc == 3)
     {
-        fprintf(stderr, "usage: %s host port [address-mask]\n", argv[0]);
+        host = argv[1];
+        port = atol(argv[2]);
+        addr_mask = strdup("FFFFFFFFFFFFFFFF");
+    }
+    else if (argc == 4 && strcmp(argv[1], "-d") == 0)
+    {
+        debug = 1;
+        host = argv[2];
+        port = atol(argv[3]);
+        addr_mask = strdup("FFFFFFFFFFFFFFFF");
+    }
+    else if (argc == 4)
+    {
+        host = argv[1];
+        port = atol(argv[2]);
+        addr_mask = strdup(argv[3]);
+    }
+    else if (argc == 5)
+    {
+        debug = 1;
+        host = argv[2];
+        port = atol(argv[3]);
+        addr_mask = strdup(argv[4]);
+    }
+    else
+    {
+        fprintf(stderr, "usage: %s [-d] host port [address-mask]\n", argv[0]);
         fprintf(stderr, "\trestrict the search by supplying an optional address mask on the form\n");
         fprintf(stderr, "\t'FFFFFFFFFFFFFFFF' where F is a wildcard character\n");
         return 0;
     }
-
-    host = argv[1];
-    port = atol(argv[2]);
-    if (argc == 4)
-    {
-        addr_mask = strdup(argv[3]);
-    }
-    else
-    {
-        addr_mask = strdup("FFFFFFFFFFFFFFFF");
-    }
-
+	
     if (addr_mask == NULL)
     {
         fprintf(stderr, "Failed to allocate address mask.\n");
