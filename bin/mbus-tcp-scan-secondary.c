@@ -96,7 +96,10 @@ main(int argc, char **argv)
     // init slaves
     //
     if (debug)
+    {
         printf("%s: debug: sending init frame #1\n", __PRETTY_FUNCTION__);
+        fflush(stdout);
+    }
 
     if (mbus_send_ping_frame(handle, MBUS_ADDRESS_NETWORK_LAYER, 1) == -1)
     {
@@ -108,7 +111,10 @@ main(int argc, char **argv)
     // resend SND_NKE, maybe the first get lost
     //
     if (debug)
+    {
         printf("%s: debug: sending init frame #2\n", __PRETTY_FUNCTION__);
+        fflush(stdout);
+    }
 
     if (mbus_send_ping_frame(handle, MBUS_ADDRESS_BROADCAST_NOREPLY, 1) == -1)
     {

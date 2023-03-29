@@ -2499,6 +2499,7 @@ mbus_scan_2nd_address_range(mbus_handle * handle, int pos, char *addr_mask)
                 if (!handle->found_event)
                 {
                     printf("Found a device on secondary address %s [using address mask %s]\n", matching_mask, mask);
+                    fflush(stdout);
                 }
             }
             else if (probe_ret == MBUS_PROBE_COLLISION)
